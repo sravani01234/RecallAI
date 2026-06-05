@@ -1,8 +1,7 @@
 import React, { useState, useContext } from 'react';
-import { NavLink, useLocation, useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 import {
-  BrainCircuit,
   HelpCircle,
   Bot,
   History,
@@ -23,24 +22,29 @@ const AppLayout = ({ children }) => {
   };
 
   const navItems = [
-    { to: '/',       icon: Home,        label: 'Dashboard',          tooltip: 'Dashboard' },
-    { to: '/quiz',   icon: HelpCircle,  label: 'Test My Knowledge',  tooltip: 'Quiz' },
-    { to: '/ai',     icon: Bot,         label: 'AI Assistant',       tooltip: 'AI Assistant' },
-    { to: '/history',icon: History,     label: 'History',            tooltip: 'History' },
+    { to: '/', icon: Home, label: 'Dashboard', tooltip: 'Dashboard' },
+    { to: '/quiz', icon: HelpCircle, label: 'Test My Knowledge', tooltip: 'Quiz' },
+    { to: '/ai', icon: Bot, label: 'AI Assistant', tooltip: 'AI Assistant' },
+    { to: '/history', icon: History, label: 'History', tooltip: 'History' },
   ];
 
   const initials = user?.name
-    ? user.name.split(' ').map(n => n[0]).join('').toUpperCase().slice(0, 2)
+    ? user.name
+        .split(' ')
+        .map((n) => n[0])
+        .join('')
+        .toUpperCase()
+        .slice(0, 2)
     : 'U';
 
   return (
     <div className="app-container">
-      {/* Sidebar */}
       <aside className={`sidebar${collapsed ? ' collapsed' : ''}`}>
-        {/* Header */}
         <div className="sidebar-header">
           {!collapsed && (
-            <span className="sidebar-logo text-gradient">SecondBrain</span>
+            <span className="sidebar-logo text-gradient">
+              RecallAI
+            </span>
           )}
           <button
             className="sidebar-toggle"
@@ -51,7 +55,6 @@ const AppLayout = ({ children }) => {
           </button>
         </div>
 
-        {/* Navigation */}
         <nav className="sidebar-nav">
           {navItems.map(({ to, icon: Icon, label, tooltip }) => (
             <NavLink
@@ -71,7 +74,6 @@ const AppLayout = ({ children }) => {
           ))}
         </nav>
 
-        {/* Bottom: user + logout */}
         <div className="sidebar-bottom">
           <div className="user-card">
             <div className="user-avatar">{initials}</div>
@@ -80,6 +82,7 @@ const AppLayout = ({ children }) => {
               <span>{user?.email}</span>
             </div>
           </div>
+
           <button
             className="nav-link btn-ghost"
             onClick={handleLogout}
@@ -94,7 +97,6 @@ const AppLayout = ({ children }) => {
         </div>
       </aside>
 
-      {/* Main area */}
       <div className="main-content">
         {children}
       </div>
