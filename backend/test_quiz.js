@@ -18,7 +18,7 @@ dotenv.config();
     const noteIds = notes.map(n => n._id.toString());
     
     console.log('Sending POST /api/ai/quiz with noteIds:', noteIds);
-    const response = await fetch('http://localhost:5000/api/ai/quiz', {
+    const response = await fetch('https://recall-ai-m71d-git-main-thyme4583-4862s-projects.vercel.app/api/ai/quiz', {
       method: 'POST',
       headers: { 
         'Authorization': `Bearer ${token}`,

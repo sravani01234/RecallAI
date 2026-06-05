@@ -13,7 +13,7 @@ const Dashboard = () => {
       try {
         const userInfo = JSON.parse(localStorage.getItem('userInfo'));
         const config = { headers: { Authorization: `Bearer ${userInfo.token}` } };
-        const { data } = await axios.get('http://localhost:5000/api/ai/notes', config);
+       const { data } = await axios.get('https://recall-ai-m71d-git-main-thyme4583-4862s-projects.vercel.app/api/ai/notes', config);
         setNoteCount(data.length);
       } catch {
         setNoteCount(0);
